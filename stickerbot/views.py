@@ -6,6 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 import requests
 from django.conf import settings
 from itertools import chain
+from .api import Update
 import json
 
 
@@ -28,9 +29,9 @@ class Bot(View):
         except ObjectDoesNotExist:
             self.chat = Chat(chat_id=chat_id, name=chat_name)
             self.chat.save()
-        reply = self.msg['message_id']
+        self.reply = self.msg['message_id']
         methods_map = {
-            '/burst': (self.burst, ()), '/pshh': (self.send_sticker, (reply,)),
+            '/burst': (self.burst, ()), '/pshh': (self.send_random, ()),
         }
         command = self.return_command()
         method, args = methods_map.get(command, ('', ''))
@@ -38,15 +39,19 @@ class Bot(View):
             method(*args)
         else:
             if self.rand_gen.random() <= self.chat.probability:
-                self.send_sticker(reply)
+                self.send_random()
             self.posted_sticker()
         return HttpResponse('')
 
-    def send_sticker(self, reply):
-        sticker_id = self.get_random()
+    def send_random(self):
+        id = self.get_random()
+        self.send_sticker(id)
+
+    def send_sticker(self, sticker_id):
+        #sticker_id = self.get_random()
         data = {
             'chat_id': self.chat.chat_id, 'sticker': sticker_id,
-            'reply_to_message_id': reply
+            'reply_to_message_id': self.reply
         }
         # if reply:
         #     data['reply_to_message_id'] = reply
@@ -62,13 +67,14 @@ class Bot(View):
             new_sticker_id = sticker['file_id']
             try:
                 sticker = Sticker.objects.get(sticker_id=new_sticker_id)
-                in_chat = self.chat.stickers.filter(sticker_id=sticker.id).exists()
+                # try to change to query from get_random for performance:
+                in_chat = self.chat.stickers.filter(sticker_id=new_sticker_id).exists()
             except ObjectDoesNotExist:
                 sticker = Sticker.objects.create(sticker_id=new_sticker_id)
                 in_chat = False
             if not in_chat:
-                intermediate = Intermediate(chat=self.chat, sticker=sticker)
-                intermediate.save()
+                inter = Intermediate(chat=self.chat, sticker=sticker)
+                inter.save()
 
     # change this
     def return_command(self):
@@ -94,18 +100,35 @@ class Bot(View):
 
     def get_random(self, exclude=None):
         count = self.chat.stickers.count()
-        stnd_stickers = iter(())
-        if count <= 25:
-            stnd_stickers = Sticker.objects.filter(chat__chat_id='standard')
-        if exclude:
-            stnd_stickers = stnd_stickers.exclude(sticker_id__in=exclude)
-            stickers = self.chat.stickers.exclude(sticker_id__in=exclude)
+        if count <=25:
+            query_args = ('standard', self.chat.chat_id)
         else:
-            stickers = self.chat.stickers
-        stick_list = list(chain(stickers.iterator(), stnd_stickers.iterator()))
-        rand_sticker = random.choice(stick_list)
-        sticker_id = rand_sticker.sticker_id
-        return sticker_id
+            query_args = (self.chat.chat_id,)
+        stickers = Sticker.objects.filter(chat__chat_id__in=('standard', self.chat.chat_id))
+        if exclude:
+            stickers = stickers.exclude(sticker_id__in=exclude)
+        stickers = stickers.values_list('sticker_id', flat=True)
+        rand_sticker_id = random.choice(stickers)
+        return rand_sticker_id
+
+    def set_keyword_sticker(self):
+        # self.send_message('Чекого, отправь мне стикер, а после слово,'
+        #              ' с которым хочешь его связать')
+        #
+        #
+
+    def send_text(self, text):
+        data = {
+            'chat_id': self.chat.id, 'text': text,
+        'reply_to_message_id': self.reply
+        }
+        url = self.url + 'sendMessage'
+        print(self.url)
+        resp = requests.post(url, json=data)
+
+    def get_keyword_sticker(self):
+        pass
+
 
 #random example
 # class PaintingManager(models.Manager):

@@ -27,5 +27,5 @@ class Intermediate(models.Model):
     word = models.CharField(max_length=100, blank=True, null=True, default='')
 
     def __str__(self):
-        return self.word
+        return '{}: {}'.format(self.chat.name, self.sticker.sticker_id)
 
