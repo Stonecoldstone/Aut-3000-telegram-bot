@@ -1,10 +1,11 @@
 # write decorator for every is/exists method maybe
-import requests
 import json
+from json.decoder import JSONDecodeError
+
 
 class Chat:
     def __init__(self, chat):
-        self.id = chat['id']
+        self.id = str(chat['id'])
         self.type = chat['type']
         self.name = self._get_name(chat)
 
@@ -14,6 +15,7 @@ class Chat:
             '{} {}'.format(chat.get('first_name'), chat.get('last_name'))
         )
         return name
+
 
 class User:
     def __init__(self, user):
@@ -27,28 +29,30 @@ class User:
                 res = '{} {}'.format(res, last)
             return res
 
+
 class Message:
-    def __init__(self, msg, url):
-        self.url = url
+    def __init__(self, msg):
         self.msg = msg
         self.id = msg['message_id']
         self.date = msg['date']
         self.chat = Chat(msg['chat'])
-        self.type = self.guess_type()
+        self.type = self.determine_type()
 
     def determine_type(self):
         types = [
             'text', 'audio', 'document', 'photo', 'sticker', 'video', 'voice',
-            'contact', 'location', 'venue'
+            'contact', 'location', 'venue', 'left_chat_member', 'new_chat_member'
         ]
         for t in types:
             if t in self.msg:
                 return t
-            else:
-                return 'undefined'
+        return 'undefined'
 
     def get_sticker_id(self):
-        return self.msg['sticker']
+        return self.msg['sticker']['file_id']
+
+    def get_left_member_username(self):
+        return self.msg['left_chat_member']['username']
 
     def get_text(self):
         return self.msg['text']
@@ -59,56 +63,49 @@ class Message:
     def get_from(self):
         return User(self.msg['from'])
 
-    def command_exist(self):
-        try:
-            res = self.msg['entities']['type'] == 'bot_command'
-        except KeyError:
-            res = False
+    def is_command(self):
+        if self.type == 'text' and self.get_text().startswith('/'):
+            return True
+        else:
+            return False
 
     def get_command(self):
-        cmd = self.get_text()
+        text = self.get_text().lower()
+        text = text.split(' ')
+        cmd = text[0]
         cmd = cmd.split('@')[0]
-        return cmd
+        args = text[1:]
+        return cmd, args
 
-    def send_text(self, text, chat_id=None, reply=None):
+    def text_response(self, text, chat_id=None, reply=False, markdown=None):
         if not chat_id:
             chat_id = self.chat.id
-        data = {
-            'chat_id': chat_id, 'text': text
-        }
+        data = {'method': 'sendMessage', 'chat_id': chat_id, 'text': text}
         if reply:
             data['reply_to_message_id'] = self.id
-        url = self.url + 'sendMessage'
-        resp = requests.post(url, json=data)
+        if markdown:
+            data['parse_mode'] = markdown
+        return data
 
-    def send_sticker(self, sticker_id, chat_id=None, reply=None):
+    def get_sticker_resp(self, sticker_id, chat_id=None, reply=True):
         if not chat_id:
             chat_id = self.chat.id
-        data = {'chat_id': chat_id, 'sticker': sticker_id}
+        data = {'method': 'sendSticker', 'chat_id': chat_id, 'sticker': sticker_id}
         if reply:
             data['reply_to_message_id'] = self.id
-
+        return data
 
 
 class Update:
     def __init__(self, request):
-        upd = json.loads(request.body.decode('utf-8'))
+        try:
+            upd = json.loads(request.body.decode('utf-8'))
+        except JSONDecodeError:
+            upd = {}
         self.upd = upd
+
+    def message_exists(self):
+        return 'message' in self.upd
 
     def get_message(self):
         return Message(self.upd['message'])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,0 +1,541 @@
+[
+{
+    "model": "stickerbot.sticker",
+    "pk": 1,
+    "fields": {
+        "sticker_id": "BQADAgADEwAD0lqIAZPkeV9UWs1eAg"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 2,
+    "fields": {
+        "sticker_id": "BQADAgADFwAD0lqIAW6NhqV3Oc1XAg"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 3,
+    "fields": {
+        "sticker_id": "BQADAgADGQAD0lqIAXHu7Uwp1lSqAg"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 4,
+    "fields": {
+        "sticker_id": "BQADAgADVAAD0lqIAX_JDAzyqZTuAg"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 5,
+    "fields": {
+        "sticker_id": "BQADAgADWAAD0lqIATfaBOP39nvjAg"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 6,
+    "fields": {
+        "sticker_id": "BQADAgADIQAD0lqIAa5Fr--ZU4S5Ag"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 7,
+    "fields": {
+        "sticker_id": "BQADAgADoAEAAksODwABHCC_-q1T2E0C"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 8,
+    "fields": {
+        "sticker_id": "BQADAgADPwEAAksODwABpyCZ3YYLxu0C"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 9,
+    "fields": {
+        "sticker_id": "BQADAgAD7wEAAksODwAB3J6y6Kf2bjwC"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 10,
+    "fields": {
+        "sticker_id": "BQADAgADgwEAAksODwABss0TWyMJO_YC"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 11,
+    "fields": {
+        "sticker_id": "BQADAgADgQEAAksODwABG9FWxMfQPcMC"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 12,
+    "fields": {
+        "sticker_id": "BQADAgADRwEAAksODwABbjxvG0UO-nwC"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 13,
+    "fields": {
+        "sticker_id": "BQADAgADfwEAAksODwABX50lGXzKqSsC"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 14,
+    "fields": {
+        "sticker_id": "BQADAgADXwEAAksODwABqkZfs0l-YCwC"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 15,
+    "fields": {
+        "sticker_id": "BQADAgADawEAAksODwABFL8veUIu6WsC"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 16,
+    "fields": {
+        "sticker_id": "BQADAgAD7QEAAksODwAB91hlOETDqnsC"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 17,
+    "fields": {
+        "sticker_id": "BQADAgADrQEAAksODwAB4ac6Jt5y74UC"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 18,
+    "fields": {
+        "sticker_id": "BQADAgADpgEAAksODwABQB6T6abud5AC"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 19,
+    "fields": {
+        "sticker_id": "BQADAgADQwEAAksODwABQ7cYWySiVl4C"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 20,
+    "fields": {
+        "sticker_id": "BQADAgADLwIAAksODwABKyPuSS2QO1YC"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 21,
+    "fields": {
+        "sticker_id": "BQADAgADGgIAAksODwAB-bj2T_mkyYkC"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 22,
+    "fields": {
+        "sticker_id": "BQADAgADGAIAAksODwABqdyqco6XkvgC"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 23,
+    "fields": {
+        "sticker_id": "BQADBAADbAADnj4QAAFZukyiQdW8pgI"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 24,
+    "fields": {
+        "sticker_id": "BQADBAADdgADnj4QAAFbrBDSzQP-0gI"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 25,
+    "fields": {
+        "sticker_id": "BQADAgADyQQAApI2owu3sP_y3TlSrwI"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 26,
+    "fields": {
+        "sticker_id": "BQADBAADrgADllpqAyIDdyNFlYDpAg"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 27,
+    "fields": {
+        "sticker_id": "BQADBAADtAADllpqA82G1_jSwJiVAg"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 28,
+    "fields": {
+        "sticker_id": "BQADBAADtgADllpqA-I3QcUScujJAg"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 29,
+    "fields": {
+        "sticker_id": "BQADBAADuAADllpqA2ojw8W_Hh0qAg"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 30,
+    "fields": {
+        "sticker_id": "BQADBAADxAADllpqA8bwMhegKrdIAg"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 31,
+    "fields": {
+        "sticker_id": "BQADBAAD1QADllpqA6CPegc-nC1RAg"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 32,
+    "fields": {
+        "sticker_id": "BQADBAAD1wADllpqA4cva2p8XoVuAg"
+    }
+},
+{
+    "model": "stickerbot.sticker",
+    "pk": 33,
+    "fields": {
+        "sticker_id": "BQADBAAD0gADllpqA332rCk_kJj2Ag"
+    }
+},
+{
+    "model": "stickerbot.chat",
+    "pk": 1,
+    "fields": {
+        "chat_id": "standard",
+        "name": "Standard",
+        "burst": 5,
+        "probability": 0.07,
+        "binding_word": null
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 1,
+    "fields": {
+        "chat": 1,
+        "sticker": 1,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 2,
+    "fields": {
+        "chat": 1,
+        "sticker": 2,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 3,
+    "fields": {
+        "chat": 1,
+        "sticker": 3,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 4,
+    "fields": {
+        "chat": 1,
+        "sticker": 4,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 5,
+    "fields": {
+        "chat": 1,
+        "sticker": 5,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 6,
+    "fields": {
+        "chat": 1,
+        "sticker": 6,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 7,
+    "fields": {
+        "chat": 1,
+        "sticker": 7,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 8,
+    "fields": {
+        "chat": 1,
+        "sticker": 8,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 9,
+    "fields": {
+        "chat": 1,
+        "sticker": 9,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 10,
+    "fields": {
+        "chat": 1,
+        "sticker": 10,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 11,
+    "fields": {
+        "chat": 1,
+        "sticker": 11,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 12,
+    "fields": {
+        "chat": 1,
+        "sticker": 12,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 13,
+    "fields": {
+        "chat": 1,
+        "sticker": 13,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 14,
+    "fields": {
+        "chat": 1,
+        "sticker": 14,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 15,
+    "fields": {
+        "chat": 1,
+        "sticker": 15,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 16,
+    "fields": {
+        "chat": 1,
+        "sticker": 16,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 17,
+    "fields": {
+        "chat": 1,
+        "sticker": 17,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 18,
+    "fields": {
+        "chat": 1,
+        "sticker": 18,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 19,
+    "fields": {
+        "chat": 1,
+        "sticker": 19,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 20,
+    "fields": {
+        "chat": 1,
+        "sticker": 20,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 21,
+    "fields": {
+        "chat": 1,
+        "sticker": 21,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 22,
+    "fields": {
+        "chat": 1,
+        "sticker": 22,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 23,
+    "fields": {
+        "chat": 1,
+        "sticker": 23,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 24,
+    "fields": {
+        "chat": 1,
+        "sticker": 24,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 25,
+    "fields": {
+        "chat": 1,
+        "sticker": 25,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 26,
+    "fields": {
+        "chat": 1,
+        "sticker": 26,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 27,
+    "fields": {
+        "chat": 1,
+        "sticker": 27,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 28,
+    "fields": {
+        "chat": 1,
+        "sticker": 28,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 29,
+    "fields": {
+        "chat": 1,
+        "sticker": 29,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 30,
+    "fields": {
+        "chat": 1,
+        "sticker": 30,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 31,
+    "fields": {
+        "chat": 1,
+        "sticker": 31,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 32,
+    "fields": {
+        "chat": 1,
+        "sticker": 32,
+        "word": ""
+    }
+},
+{
+    "model": "stickerbot.intermediate",
+    "pk": 33,
+    "fields": {
+        "chat": 1,
+        "sticker": 33,
+        "word": ""
+    }
+}
+]

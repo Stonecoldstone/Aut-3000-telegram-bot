@@ -1,3 +1,7 @@
 django_stickerbot/settings.py
 manage.py
 .idea
+exceptions.txt
+db.sqlite3
+data_for_tests.txt
+
