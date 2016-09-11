@@ -51,6 +51,9 @@ class Message:
     def get_sticker_id(self):
         return self.msg['sticker']['file_id']
 
+    def get_new_member_username(self):
+        return self.msg['new_chat_member']['username']
+
     def get_left_member_username(self):
         return self.msg['left_chat_member']['username']
 
@@ -77,7 +80,8 @@ class Message:
         args = text[1:]
         return cmd, args
 
-    def text_response(self, text, chat_id=None, reply=False, markdown=None):
+    def text_response(self, text, chat_id=None, reply=False,
+                      markdown=None, reply_markup=None):
         if not chat_id:
             chat_id = self.chat.id
         data = {'method': 'sendMessage', 'chat_id': chat_id, 'text': text}
@@ -85,6 +89,8 @@ class Message:
             data['reply_to_message_id'] = self.id
         if markdown:
             data['parse_mode'] = markdown
+        if reply_markup:
+            data['reply_markup'] = reply_markup
         return data
 
     def get_sticker_resp(self, sticker_id, chat_id=None, reply=True):
@@ -103,9 +109,55 @@ class Update:
         except JSONDecodeError:
             upd = {}
         self.upd = upd
+        self.type = self.determine_type()
 
-    def message_exists(self):
-        return 'message' in self.upd
+    def determine_type(self):
+        types = ['message', 'callback_query']
+        for t in types:
+            if t in self.upd:
+                return t
+        return 'undefined'
+
+    #
+    # def message_exists(self):
+    #     return 'message' in self.upd
 
     def get_message(self):
         return Message(self.upd['message'])
+
+    def get_callback_query(self):
+        return CallbackQuery(self.upd['callback_query'])
+
+
+class CallbackQuery:
+    def __init__(self, query):
+        self.query = query
+        self.user = User(query['from'])
+        self.data = query['data']
+        self.id = query['id']
+
+    def is_message(self):
+        return 'message' in self.query
+
+    def get_message(self):
+        return Message(self.query['message'])
+
+    def change_inline_msg(self, text, markdown=None, reply_markup=None):
+        message = self.get_message()
+        data = {
+            'method': 'editMessageText', 'text': text,
+            'chat_id': message.chat.id,
+            'message_id': message.id
+            #'chat_id': chat_id,
+            #'inline_message_id': self.id,
+        }
+        if markdown:
+            data['parse_mode'] = markdown
+        if reply_markup:
+            data['reply_markup'] = reply_markup
+        return data
+
+
+
+
+

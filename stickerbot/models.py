@@ -14,7 +14,7 @@ class Chat(models.Model):
     stickers = models.ManyToManyField(Sticker, through='Intermediate')
     probability = models.FloatField(default=0.04)
     binding_word = models.TextField(default='', blank=True, null=True)
-    lang = models.CharField(max_length=100, default='russian')
+    lang = models.CharField(max_length=100, default='english')
 
     def __str__(self):
         return self.name

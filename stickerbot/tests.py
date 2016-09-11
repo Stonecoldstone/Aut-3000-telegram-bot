@@ -13,7 +13,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 
 class TestOverall(TestCase):
-    fixtures = ['testdata.json']
+    #fixtures = ['testdata.json']
 
     @classmethod
     def setUpTestData(cls):
