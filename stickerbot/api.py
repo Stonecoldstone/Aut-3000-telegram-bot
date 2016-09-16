@@ -12,7 +12,7 @@ class Chat:
     def _get_name(self, chat):
         name = chat.get(
             'title',
-            '{} {}'.format(chat.get('first_name'), chat.get('last_name'))
+            '{} {}'.format(chat.get('first_name'), chat.get('last_name', ''))
         )
         return name
 

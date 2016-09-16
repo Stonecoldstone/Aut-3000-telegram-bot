@@ -12,7 +12,7 @@ class Chat(models.Model):
     chat_id = models.CharField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
     stickers = models.ManyToManyField(Sticker, through='Intermediate')
-    probability = models.FloatField(default=0.04)
+    probability = models.FloatField(default=0.05)
     binding_word = models.TextField(default='', blank=True, null=True)
     lang = models.CharField(max_length=100, default='english')
 

@@ -17,9 +17,6 @@ class Bot(View):
 
     def post(self, request):
         upd = Update(request)
-        with open('data_for_tests.txt', 'a') as file:
-            pprint(upd.upd, stream=file)
-
         if upd.type == 'message':
             self.msg = upd.get_message()
             self.chat = self.get_or_create_chat(self.msg.chat)
@@ -51,21 +48,6 @@ class Bot(View):
                 data = method()
             except KeyError:
                 data = self.send_random(prob=True)
-            # method = msg_types_map.get(self.msg.type, self.handle_not_cmd)
-            # data = method()
-
-            # methods_map = {
-            #     '/pshh': self.send_random, '/set_chance': self.set_chance,
-            #     '/bind': self.initialize_bind, '/unbind': self.unbind,
-            #     '/stats': self.stats,
-            #     '/language': self.send_language_choices
-            #
-            # }
-            # command, args = False, ()
-            # if self.msg.is_command():
-            #     command, args = self.msg.get_command()
-            # method = methods_map.get(command, self.handle_not_cmd)
-            # data = method(*args)
         elif upd.type == 'callback_query':
             self.call_query = upd.get_callback_query()
             msg = self.call_query.get_message()
@@ -91,7 +73,7 @@ class Bot(View):
         binds = self.chat.intermediate_set.exclude(word='').values_list('word', flat=True)
         binds = ', '.join(sorted(binds))
         text = self.lang['stats'].format(count, binds)
-        return self.msg.text_response(text, markdown='HTML')
+        return self.msg.text_response(text)
 
     def set_chance(self, *args):
         low, high = 0, 50
@@ -110,38 +92,6 @@ class Bot(View):
                 text = self.lang['set_chance_limit'].format(low, high)
         return self.msg.text_response(text)
 
-    # def handle_not_cmd(self, *args):
-    #     rand_bool = True
-    #     data = {}
-    #     mtype = self.msg.type
-    #     if mtype == 'left_chat_member' and \
-    #                     self.msg.get_left_member_username() == settings.BOT_USERNAME:
-    #         self.chat.delete()
-    #         data = {}
-    #         rand_bool = False
-    #     elif mtype == 'new_chat_member'
-    #     elif mtype == 'text':
-    #         text = self.msg.get_text().lower()
-    #         words = self.chat.intermediate_set.exclude(word='')
-    #         words = words.values_list('word', 'sticker__sticker_id')
-    #         matches = []
-    #         for word, sticker in words:
-    #             ind = text.find(word)
-    #             if ind != -1:
-    #                 matches.append((word, sticker, ind))
-    #         if matches:
-    #             matches.sort(key=lambda x: len(x[0]), reverse=True)
-    #             matches.sort(key=itemgetter(2))
-    #             stick_id = matches[0][1]
-    #             data = self.msg.get_sticker_resp(stick_id, reply=settings.REPLY)
-    #             rand_bool = False
-    #     if rand_bool:
-    #         if self.rand_gen.random() <= self.chat.probability:
-    #             data = self.send_random()
-    #     if mtype == 'sticker':
-    #         self.save_sticker()
-    #     return data
-
     def handle_left(self):
         if self.msg.get_left_member_username() == settings.BOT_USERNAME:
             self.chat.delete()
@@ -159,9 +109,10 @@ class Bot(View):
 
     def handle_text(self):
         methods_map = {
-            '/pshh': self.send_random, '/set_chance': self.set_chance,
+            '/pshh': self.send_random, '/chance': self.set_chance,
             '/bind': self.initialize_bind, '/unbind': self.unbind,
             '/stats': self.stats,
+            '/help': self.show_help,
             '/language': self.send_language_choices
 
         }
@@ -233,20 +184,6 @@ class Bot(View):
         text = self.lang['bind_success']
         return self.msg.text_response(text)
 
-    # def get_random_sticker(self):
-    #     count = self.chat.stickers.distinct().count()
-    #     if count <= 25:
-    #         query_args = ('standard', self.chat.chat_id)
-    #     else:
-    #         query_args = (self.chat.chat_id,)
-    #     stickers = Sticker.objects.filter(chat__chat_id__in=query_args).distinct()
-    #     stickers = stickers.values_list('sticker_id', flat=True)
-    #     try:
-    #         rand_sticker_id = random.choice(stickers)
-    #     except IndexError:
-    #         rand_sticker_id = ''
-    #     return rand_sticker_id
-
     def initialize_bind(self, *args):
         if args:
             word = ' '.join(args)
@@ -284,3 +221,13 @@ class Bot(View):
         self.chat.save()
         text = LANG[lang]['language_changed']
         return self.call_query.change_inline_msg(text)
+
+    def show_help(self):
+        text = self.lang['help']
+        msg = self.msg.text_response(text, markdown='HTML')
+        msg['disable_web_page_preview'] = True
+        return msg
+
+    # def send_help_msg(self, *args):
+    #     text = self.lang('help')
+    #     return self.msg.text_response(text, markdown='Markdown')
